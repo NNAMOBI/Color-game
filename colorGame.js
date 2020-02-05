@@ -8,13 +8,14 @@
 //     "rgb(255, 0, 135)",
 //     "rgb(23, 255, 148)"
 // ]
-
-let colors = generateRandom(6)
+let numOfSquares = 6
+let colors = generateRandom(numOfSquares)
 
 // select the button tag
 let button = document.querySelector("button")
 
 let resetButton = document.getElementById("resetButton")
+resetButton.style.color = 'red'
 
 
 // manipulate the button to add the css selector
@@ -25,13 +26,6 @@ let h1 = document.querySelector('h1')
 let easyBtn = document.querySelector("#easyBtn")
 let hardBtn = document.querySelector("#hardBtn")
 
-easyBtn.addEventListener("click", function(){
-    alert("easy button clicked")
-})
-
-hardBtn.addEventListener("click",function(){
-    alert("hard button clicked")
-})
 
 // call the pickedCol function and assign it to the pickedColor
 let pickedColor = pickedCol();
@@ -49,7 +43,7 @@ resetButton.addEventListener('click', function(){
     resetButton.textContent = "New colors"
     displayMessage.textContent = "Message"
     // // generate random colors
-    colors = generateRandom(6)
+    colors = generateRandom(numOfSquares)
     // //pick a random color
     pickedColor = pickedCol();
     // //let the display message equal to picked color so you can confirm when there is doubt 
@@ -72,6 +66,48 @@ resetButton.addEventListener('click', function(){
     
    
     
+})
+
+easyBtn.addEventListener("click", function(){
+    // alert("easy button clicked")
+    easyBtn.classList.add('select')
+    hardBtn.classList.remove('select')
+
+    //pseudo-code: we want only the three colors to appear in the guessing game, so lets do this
+    // generate 3 random colors
+    numOfSquares = 3
+    colors = generateRandom(numOfSquares)
+    // pick a color that the users will guess
+    pickedColor = pickedCol()
+    // let get = document.querySelectorAll('.square')
+    for(i = 0; i < squareBox.length; i++){
+        if(colors[i]){
+    squareBox[i].style.background = colors[i]
+    }else{
+        squareBox[i].style.display = "none"
+    }
+}
+})
+
+hardBtn.addEventListener("click",function(){
+    // alert("hard button clicked")
+    hardBtn.classList.add('select')
+    easyBtn.classList.remove('select')
+
+    //pseudo-code: we want it to generate the initial 6 colors to appear in the guessing game, so lets do this
+    // generate 3 random colors
+    numOfSquares = 6
+    colors = generateRandom(numOfSquares)
+    // pick a color that the users will guess
+    pickedColor = pickedCol()
+    // let get = document.querySelectorAll('.square')
+    for(i = 0; i < squareBox.length; i++){
+        
+    squareBox[i].style.background = colors[i]
+    
+        squareBox[i].style.display = "block"
+    
+}
 })
 
 
