@@ -10,12 +10,16 @@
 // ]
 let numOfSquares = 6
 let colors = generateRandom(numOfSquares)
+let h2 = document.querySelector('h2')
+let resIndex = h2.textContent
+// let res = h2.textContent.length
+// console.log(h2.textContent)
 
 // select the button tag
 let button = document.querySelector("button")
 
 let resetButton = document.getElementById("resetButton")
-resetButton.style.color = 'red'
+// resetButton.style.color = 'steelblue'
 
 
 // manipulate the button to add the css selector
@@ -41,7 +45,8 @@ let colorToBeDisplayed = document.getElementById("colorDisplay")
 resetButton.addEventListener('click', function(){
 
     resetButton.textContent = "New colors"
-    displayMessage.textContent = "Message"
+    h2.style.background = 'steelblue'
+    displayMessage.textContent = ""
     // // generate random colors
     colors = generateRandom(numOfSquares)
     // //pick a random color
@@ -60,7 +65,7 @@ resetButton.addEventListener('click', function(){
     }
     
     
-    h1.style.background = "#232323"
+    h1.style.background = "steelblue"
 
   
     
@@ -72,6 +77,8 @@ easyBtn.addEventListener("click", function(){
     // alert("easy button clicked")
     easyBtn.classList.add('select')
     hardBtn.classList.remove('select')
+    h2.textContent = "Guess from the 3 colors displayed below the one that matches the  RGB above"
+    h2.style.background = "steelblue"
 
     //pseudo-code: we want only the three colors to appear in the guessing game, so lets do this
     // generate 3 random colors
@@ -87,12 +94,17 @@ easyBtn.addEventListener("click", function(){
         squareBox[i].style.display = "none"
     }
 }
+h1.style.background = "steelblue"
+// displayMessage.textContent = "Message"
+
 })
 
 hardBtn.addEventListener("click",function(){
     // alert("hard button clicked")
     hardBtn.classList.add('select')
     easyBtn.classList.remove('select')
+    h2.textContent = "Guess from the 6 colors displayed below the one that matches the RGB above"
+    h2.style.background = "steelblue"
 
     //pseudo-code: we want it to generate the initial 6 colors to appear in the guessing game, so lets do this
     // generate 3 random colors
@@ -108,6 +120,9 @@ hardBtn.addEventListener("click",function(){
         squareBox[i].style.display = "block"
     
 }
+
+h1.style.background = "steelblue"
+// displayMessage.textContent = 
 })
 
 
@@ -133,9 +148,12 @@ colorToBeDisplayed.textContent = pickedColor
         var clickedColor = this.style.background;
         console.log(this.style.background)
         console.log(pickedColor)
+        
         // console.log(clickedColor)
     
         // console.log(`${clickedColor}, ${pickedColor}`)
+
+        
         if(clickedColor === pickedColor){
     
           
@@ -145,13 +163,16 @@ colorToBeDisplayed.textContent = pickedColor
                 displayMessage.style.color = "black"
                 h1.style.background = clickedColor;
                 resetButton.textContent = "Play Again?"
+                h2.style.background = clickedColor
                 
                 
                 
             })
             
             
-        }else {
+            
+        }
+        else {
             // alert("WRONG CHOICE")
             this.style.backgroundColor = "#232323";
             displayMessage.textContent = "try again"
